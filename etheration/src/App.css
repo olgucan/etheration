@@ -1,0 +1,38 @@
+
+
+body {
+    background-color: #F9F9F9;
+}
+.cartitem.card {
+    border: none;
+  
+    
+}
+.searchicon {
+    position: absolute;
+    top: 26px;
+    left: 20px;
+    cursor: pointer;
+}
+.searchiconnav {
+    position: absolute;
+    top: 12px;
+    left: 10px;
+    cursor: pointer;
+}
+
+
+
+@media screen and (max-width:800px) {
+    .cartitem {
+ height: 580px !important;
+    }
+}
+
+@media screen and (max-width:1000px) {
+    .cartitem.card {
+        
+        
+        margin-top: 100px;
+    }
+}
