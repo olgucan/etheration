@@ -83,9 +83,9 @@ function Products() {
     </div>
      </div>
      <div style={{height:"200px",overflowY:"scroll",position:'relative'}} className='shadow p-3 mt-4  bg-white rounded my-3'>
-     <Form.Control type="text" placeholder="Search" style={{border:"none",paddingLeft:'2rem'}} />
+     <Form.Control type="text" onChange={(e)=>context.SearchBrands(e)} placeholder="Search" style={{border:"none",paddingLeft:'2rem'}} />
      <img className='searchicon' src={"./Search.svg"} />
-     {context.AllBrands().map((a,i)=>(
+     {context.filteredBrands.map((a,i)=>(
         
          <div className='mt-2'>
     <input type="checkbox" name='bir' value={a} onChange={(e)=>context.filterbyBrands(e)}/>
@@ -98,12 +98,12 @@ function Products() {
      </div>
      <div style={{height:"200px",overflowY:"scroll",position:'relative'}} className='shadow p-3 mt-4  bg-white rounded'>
 
-     <Form.Control  type="text" placeholder="Search" style={{border:"none",paddingLeft:'2rem'}} />
+     <Form.Control onChange={(e)=>context.SearchModels(e)}  type="text" placeholder="Search" style={{border:"none",paddingLeft:'2rem'}} />
      <img className='searchicon' src={"./Search.svg"} />
      
-     {context.AllModels().map((a,i)=>(
+     {context.filteredModels.map((a,i)=>(
          <div className='mt-2'>
-         <input type="checkbox" name='bir' value={a} />
+         <input type="checkbox" onChange={(e)=>context.filterbyModels(e)} name='bir' value={a} />
           <label htmlFor="" className='ms-2'>{a}</label>
          </div>
      ))}

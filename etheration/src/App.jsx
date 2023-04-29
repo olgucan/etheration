@@ -10,6 +10,8 @@ function App() {
 
   const [models,setModels]=useState([])
   const [brands,setBrands]=useState([])
+  const [filteredModels,setFilteredModels]=useState([])
+  const [filteredBrands,setFilteredBrands]=useState([])
   const [data, setData] = useState([]);
   useEffect(() => {
     fetchData();
@@ -159,18 +161,21 @@ function App() {
       }
       b.push(a.model)
     })
-    return b
+    setModels(()=>b)
+    setFilteredModels(()=>models)
   }
-  // const SearchModels= (e) => {
-  //   let t = AllModels()
+  const SearchModels= (e) => {
+  //   let t = models
   //  let k= t.filter(function(a,b){
      
   //     return a.toLowerCase().indexOf(e.target.value.toLowerCase()) !== -1 
      
   //   })
   //   setModels(k)
+
+    setFilteredModels(()=>models.filter(a=> e.target.value.length==0 ? true : a.toLowerCase().includes(e.target.value.toLowerCase())))
     
-  // }
+  }
   const AllBrands = () => {
     let b = []
     data.forEach(a=> {
@@ -179,17 +184,30 @@ function App() {
       }
       b.push(a.brand)
     })
-    return b
+   setBrands(()=>b)
+   setFilteredBrands(()=>brands)
   }
-  // useEffect(()=> {
-  //   AllBrands()
-  //   AllModels()
-  // },[])
+  const SearchBrands= (e) => {
+    //   let t = models
+    //  let k= t.filter(function(a,b){
+       
+    //     return a.toLowerCase().indexOf(e.target.value.toLowerCase()) !== -1 
+       
+    //   })
+    //   setModels(k)
+  
+      setFilteredBrands(()=>brands.filter(a=> e.target.value.length==0 ? true : a.toLowerCase().includes(e.target.value.toLowerCase())))
+      
+    }
+  useEffect(()=> {
+    AllBrands()
+    AllModels()
+  },[data])
   
   return (
   <ProductsContext.Provider value={{state:state,addTocart,increase,decrease,sortOldToNew
   ,sortNewToOld,sortpriceHighToLow,sortpriceLowToHigh,filterbyNavInput,
-  AllBrands,AllModels,filterbyBrands,filterbyModels}}>
+  AllBrands,AllModels,filterbyBrands,filterbyModels,SearchBrands,filteredModels,SearchModels,filteredBrands}}>
         <Routes>
   <Route  path="/" element={<Products/>} />
   <Route path="/singlepage/:id" element={<Singlepage/>} />
